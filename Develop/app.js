@@ -177,7 +177,7 @@ function writeTeam() {
 }
 
 const userInstruction = () => {
-    console.log("Employee Generator");
+    console.log("Team Generator");
     console.log("User instruction:");
     console.log("Follow the prompt to input informations");
     console.log("'Ctrl+c' to exit program")
