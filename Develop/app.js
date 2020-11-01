@@ -13,9 +13,8 @@ const Employee = require("./lib/Employee");
 const { deflateSync } = require("zlib");
 
 let employees = [];
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
+//inquirer questions with input validation
 const questions = [
     {
         type: "input",
@@ -115,11 +114,13 @@ const questions = [
     }
 ];
 
-function setEmployee() {
+
+//fuction to generate objects depends on user's input, then save those objects in an array.
+const setEmployee = () => {
     inquirer
         .prompt(questions)
-        .then(function (response) {
-            console.log(response);
+        .then(response => {
+            // console.log(response);
             switch (response.role) {
                 case "Engineer":
                     const newEngineer = new Engineer(response.name.trim(), response.id, response.email, response.github);
@@ -135,26 +136,21 @@ function setEmployee() {
                     employees.push(newIntern);
                     break;
             }
+            //add another employee
             if (response.add) {
+                console.log("========================================");
                 setEmployee();
             }
+            //after finish input all employee informations, call wtiteTeam function
             else {
-                // let renderedHtml = render(employees);
-                // if (!fs.existsSync(OUTPUT_DIR)) {
-                //     fs.mkdir(OUTPUT_DIR);
-                // }
-                // fs.writeFile(outputPath, renderedHtml);
                 writeTeam();
             }
             // console.log(employees);
         })
 }
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-function writeTeam() {
+//funtion to generate team.html page
+const writeTeam = () => {
     let renderedHtml = render(employees);
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdir(OUTPUT_DIR, function (error) {
@@ -162,7 +158,7 @@ function writeTeam() {
                 console.error(error);
             }
             else {
-                console.log("Success");
+                console.log("'output folser has been generated!!'");
             }
         });
     }
@@ -171,18 +167,25 @@ function writeTeam() {
             console.error(error);
         }
         else {
-            console.log("Success");
+            console.log("----------------------------------------");
+            console.log("Team page has been generated!!");
         }
     });
 }
 
+//console log instruction.
 const userInstruction = () => {
     console.log("Team Generator");
+    console.log("----------------------------------------")
     console.log("User instruction:");
-    console.log("Follow the prompt to input informations");
-    console.log("'Ctrl+c' to exit program")
+    console.log("Follow the prompt to input your employees' informations.");
+    console.log("Will generate a 'team.html' file under 'output' folder.");
+    console.log("'Ctrl+c' to end the program!");
+    console.log("----------------------------------------");
+
 }
 
+//start app function
 const ini = () => {
     console.clear();
     userInstruction();
@@ -190,18 +193,3 @@ const ini = () => {
 }
 
 ini();
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+.body{
+    box-sizing: border-box;
+}
+
+
+.container-fluid{
+    font-family: 'Ubuntu',sans-serif;
+    
+}
+
+.team-heading{
+    background: crimson;
+    color: white;
+}
+
+.employee-card .card-header{
+    font-family: 'Ubuntu',sans-serif;
+}
+
+.employee-card .card-body{
+    font-family: 'Poppins', sans-serif;
+}
+.employee-card{
+    margin: 15px;
+    width: 30%;
+    box-shadow: 10px 10px 5px #888888;
+    transition: all 0.3s ease;
+}
+.employee-card:hover{
+    transform: perspective(1px) scale(1.05);
+    cursor: pointer;
+}
+
+.team-area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.manager .card-header{
+    background: #3354AA;
+    color: white;
+}
+
+.engineer .card-header{
+    background: #f0b111;
+    color: white;
+}
+.intern .card-header{
+    background: #01847f;
+    color: white;
+}
+
+@media(max-width:992px){
+    .employee-card{
+    margin: 15px;
+    width: 40%;
+}
+    .container{
+    max-width: 960px;
+}
+}
+@media(max-width:768px){
+    .container{
+    max-width: 960px;
+}
+}
+
+@media(max-width:580px){
+    .employee-card{
+    margin: 15px;
+    width: 80%;
+    padding: 30px;
+}
+}
